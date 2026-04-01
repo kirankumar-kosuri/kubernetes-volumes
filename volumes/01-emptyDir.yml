@@ -7,7 +7,7 @@ spec:
   containers:
   - name: nginx
     image: nginx
-        # mounting the volume to nginx
+    # mounting the volume to nginx
     volumeMounts:
     - mountPath: /var/log/nginx
       name: nginx-logs
