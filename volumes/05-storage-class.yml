@@ -6,3 +6,36 @@ reclaimPolicy: Retain
 provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
 ---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+        purpose: ebs-dynamic
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: nginx-html
+      mountPath: /usr/share/nginx/html
+  # nodeSelector:
+  #   topology.kubernetes.io/zone: us-east-1b
+  volumes:
+  - name: nginx-html
+    persistentVolumeClaim:
+      claimName: ebs-dynamic
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ebs-dynamic
+spec:
+  type: LoadBlancer
+  selector:
+    purpose: ebs-dynamic
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30007
