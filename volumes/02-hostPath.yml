@@ -28,10 +28,10 @@ spec:
         image: quay.io/fluentd_elasticsearch/fluentd:v5.0.1
         resources:
           limits:
-            memory: 200Mi
+            memory: "200Mi"
           requests:
-            cpu: 100m
-            memory: 200Mi
+            cpu: "100m"
+            memory: "200Mi"
         volumeMounts:
         - name: varlog
           mountPath: /var/log
