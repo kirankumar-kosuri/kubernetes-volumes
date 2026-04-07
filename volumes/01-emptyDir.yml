@@ -23,7 +23,7 @@ spec:
     volumeMounts:
     - mountPath: /mnt/nginx-log
       name: nginx-logs
-      readOnly: true # if we mention readOnly true almalinux cannot modify amything it just read the logs 
+      readOnly: true  # if we mention readOnly true almalinux cannot modify amything it just read the logs 
 
 # creating volumes with name nginx-logs
   volumes:
